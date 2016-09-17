@@ -11,12 +11,23 @@
     background-color: #57896f;
     opacity: 50;
 }
+#mainDot01 {
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    top: 64%;
+    left: 51%;
+    margin-top: -10px;
+    margin-left: -10px;
+    background-color: #57896f;
+    opacity: 50;
+}
 
 #mainDot1 {
     width: 12px;
     height: 12px;
     position: absolute;
-    top: 30%;
+    top: 39%;
     left: 30%;
     margin-top: -10px;
     margin-left: -10px;
@@ -24,12 +35,61 @@
     opacity: 50;
 }
 
+#mainDot11 {
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    top: 44%;
+    left: 28%;
+    margin-top: -10px;
+    margin-left: -10px;
+    background-color: #57896f;
+    opacity: 50;
+}
+
+#mainDot12 {
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    top: 12%;
+    left: 24%;
+    margin-top: -10px;
+    margin-left: -10px;
+    background-color: #57896f;
+    opacity: 50;
+}
+
+#mainDot13 {
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    top: 32%;
+    left: 24%;
+    margin-top: -10px;
+    margin-left: -10px;
+    background-color: #57896f;
+    opacity: 50;
+}
+
+
 #mainDot2 {
     width: 10px;
     height: 10px;
     position: absolute;
     top: 80%;
-    left: 80%;
+    left: 74%;
+    margin-top: -10px;
+    margin-left: -10px;
+    background-color: #57896f;
+    opacity: 50;
+}
+
+#mainDot21 {
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    top: 82%;
+    left: 74%;
     margin-top: -10px;
     margin-left: -10px;
     background-color: #57896f;
@@ -40,20 +100,80 @@
     width: 15px;
     height: 15px;
     position: absolute;
-    top: 57%;
-    left: 29%;
+    top: 61%;
+    left: 33%;
     margin-top: -10px;
     margin-left: -10px;
     background-color: #57896f;
     opacity: 50;
 }
 
-#mainDot4 {
+#mainDot31 {
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    top: 78%;
+    left: 31%;
+    margin-top: -10px;
+    margin-left: -10px;
+    background-color: #57896f;
+    opacity: 50;
+}
+
+#mainDot4{
     width: 10px;
     height: 10px;
     position: absolute;
     top: 52%;
     left: 67%;
+    margin-top: -10px;
+    margin-left: -10px;
+    background-color: #57896f;
+    opacity: 50;
+}
+
+#mainDot42 {
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    top: 30%;
+    left: 60%;
+    margin-top: -10px;
+    margin-left: -10px;
+    background-color: #57896f;
+    opacity: 50;
+}
+
+#mainDot43{
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    top: 30%;
+    left: 67%;
+    margin-top: -10px;
+    margin-left: -10px;
+    background-color: #57896f;
+    opacity: 50;
+}
+
+#mainDot41 {
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    top: 22%;
+    left: 57%;
+    margin-top: -10px;
+    margin-left: -10px;
+    background-color: #57896f;
+    opacity: 50;
+}
+
+#mainDot5 {
+    width: 12px;    
+    height: 12px;
+    position: absolute;
+    top: 35%;
+    left: 21%;
     margin-top: -10px;
     margin-left: -10px;
     background-color: #57896f;
@@ -73,6 +193,11 @@
 .Dot2 {
     cursor: pointer;
     border-radius: 9px;
+}
+
+.Dot3 {
+    cursor: pointer;
+    border-radius: 10px;
 }
 
 .circle {

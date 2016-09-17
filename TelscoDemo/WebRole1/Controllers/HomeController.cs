@@ -77,7 +77,7 @@ namespace WebRole1.Controllers
 
             TokenCloudCredentials credentials = new TokenCloudCredentials(subscriptionID, token);
 
-            string resourceUri = "/subscriptions/dd0db424-9a49-408d-911e-67e398aaaa3a/resourceGroups/artrejo-scaledemo3/providers/Microsoft.DocumentDB/databaseAccounts/artrejo-scaledemo3";
+            string resourceUri = "/subscriptions/dd0db424-9a49-408d-911e-67e398aaaa3a/resourceGroups/artrejo-scaledemo2/providers/Microsoft.DocumentDB/databaseAccounts/artrejo-scaledemo2";
 
             //string filter = null;
             TimeSpan period = new TimeSpan(0, 0, 0, 30, 0);

@@ -324,14 +324,34 @@ $(document).ready(function () {
     }
     addCircle("#mainDot", 6000);
     setInterval(function () { addCircle("#mainDot", 6000); }, 1200);
+    addCircle("#mainDot01", 5000);
+    setInterval(function () { addCircle("#mainDot01", 5000); }, 1200);
+    addCircle("#mainDot11", 5000);
+    setInterval(function () { addCircle("#mainDot11", 5000); }, 1200);
+    addCircle("#mainDot12", 6000);
+    setInterval(function () { addCircle("#mainDot11", 6000); }, 1200);
+    addCircle("#mainDot12", 6000);
+    setInterval(function () { addCircle("#mainDot12", 6000); }, 1200);
     addCircle("#mainDot1", 5000);
     setInterval(function () { addCircle("#mainDot1", 5000); }, 1200);
     addCircle("#mainDot2", 5000);
     setInterval(function () { addCircle("#mainDot2", 5000); }, 1200);
+    addCircle("#mainDot21", 7000);
+    setInterval(function () { addCircle("#mainDot21", 7000); }, 1200);
     addCircle("#mainDot3", 5500);
     setInterval(function () { addCircle("#mainDot3", 5500); }, 1200);
+    addCircle("#mainDot31", 5500);
+    setInterval(function () { addCircle("#mainDot31", 5500); }, 1200);
     addCircle("#mainDot4", 5200);
     setInterval(function () { addCircle("#mainDot4", 5200); }, 1200);
+    addCircle("#mainDot41", 5200);
+    setInterval(function () { addCircle("#mainDot41", 5200); }, 1200);
+    addCircle("#mainDot42", 5200);
+    setInterval(function () { addCircle("#mainDot42", 5200); }, 1200);
+    addCircle("#mainDot43", 5200);
+    setInterval(function () { addCircle("#mainDot43", 5200); }, 1200);
+    addCircle("#mainDot5", 5200);
+    setInterval(function () { addCircle("#mainDot5", 5200); }, 1200);
 
 });
 
