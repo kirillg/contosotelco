@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{974F84DF-9148-4969-B7C9-01033AE8792B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WorkerRole1</RootNamespace>
+    <AssemblyName>WorkerRole1</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <RoleType>Worker</RoleType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Azure.KeyVault.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Azure.KeyVault.Core.1.0.0\lib\net40\Microsoft.Azure.KeyVault.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Data.Edm, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.Edm.5.7.0\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.OData.5.7.0\lib\net40\Microsoft.Data.OData.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services.Client, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.Services.Client.5.7.0\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Clients.ActiveDirectory, Version=3.13.4.878, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Clients.ActiveDirectory.3.13.4\lib\net45\Microsoft.IdentityModel.Clients.ActiveDirectory.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Clients.ActiveDirectory.Platform, Version=3.13.4.878, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Clients.ActiveDirectory.3.13.4\lib\net45\Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Diagnostics, Version=2.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.ServiceRuntime, Version=2.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Storage, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAzure.Storage.7.0.0\lib\net40\Microsoft.WindowsAzure.Storage.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Spatial, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Spatial.5.7.0\lib\net40\System.Spatial.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WorkerRole.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="bin\Debug\WorkerRole1.dll.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\de\Microsoft.Data.Edm.resources.dll" />
+    <Content Include="bin\Debug\de\Microsoft.Data.OData.resources.dll" />
+    <Content Include="bin\Debug\de\Microsoft.Data.Services.Client.resources.dll" />
+    <Content Include="bin\Debug\de\System.Spatial.resources.dll" />
+    <Content Include="bin\Debug\es\Microsoft.Data.Edm.resources.dll" />
+    <Content Include="bin\Debug\es\Microsoft.Data.OData.resources.dll" />
+    <Content Include="bin\Debug\es\Microsoft.Data.Services.Client.resources.dll" />
+    <Content Include="bin\Debug\es\System.Spatial.resources.dll" />
+    <Content Include="bin\Debug\fr\Microsoft.Data.Edm.resources.dll" />
+    <Content Include="bin\Debug\fr\Microsoft.Data.OData.resources.dll" />
+    <Content Include="bin\Debug\fr\Microsoft.Data.Services.Client.resources.dll" />
+    <Content Include="bin\Debug\fr\System.Spatial.resources.dll" />
+    <Content Include="bin\Debug\it\Microsoft.Data.Edm.resources.dll" />
+    <Content Include="bin\Debug\it\Microsoft.Data.OData.resources.dll" />
+    <Content Include="bin\Debug\it\Microsoft.Data.Services.Client.resources.dll" />
+    <Content Include="bin\Debug\it\System.Spatial.resources.dll" />
+    <Content Include="bin\Debug\ja\Microsoft.Data.Edm.resources.dll" />
+    <Content Include="bin\Debug\ja\Microsoft.Data.OData.resources.dll" />
+    <Content Include="bin\Debug\ja\Microsoft.Data.Services.Client.resources.dll" />
+    <Content Include="bin\Debug\ja\System.Spatial.resources.dll" />
+    <Content Include="bin\Debug\ko\Microsoft.Data.Edm.resources.dll" />
+    <Content Include="bin\Debug\ko\Microsoft.Data.OData.resources.dll" />
+    <Content Include="bin\Debug\ko\Microsoft.Data.Services.Client.resources.dll" />
+    <Content Include="bin\Debug\ko\System.Spatial.resources.dll" />
+    <Content Include="bin\Debug\Microsoft.Azure.KeyVault.Core.dll" />
+    <Content Include="bin\Debug\Microsoft.Azure.KeyVault.Core.xml" />
+    <Content Include="bin\Debug\Microsoft.Data.Edm.dll" />
+    <Content Include="bin\Debug\Microsoft.Data.Edm.xml" />
+    <Content Include="bin\Debug\Microsoft.Data.OData.dll" />
+    <Content Include="bin\Debug\Microsoft.Data.OData.xml" />
+    <Content Include="bin\Debug\Microsoft.Data.Services.Client.dll" />
+    <Content Include="bin\Debug\Microsoft.Data.Services.Client.xml" />
+    <Content Include="bin\Debug\Microsoft.WindowsAzure.Diagnostics.dll" />
+    <Content Include="bin\Debug\Microsoft.WindowsAzure.Storage.dll" />
+    <Content Include="bin\Debug\Microsoft.WindowsAzure.Storage.pdb" />
+    <Content Include="bin\Debug\Microsoft.WindowsAzure.Storage.xml" />
+    <Content Include="bin\Debug\MonAgentListener.dll" />
+    <Content Include="bin\Debug\Newtonsoft.Json.dll" />
+    <Content Include="bin\Debug\Newtonsoft.Json.xml" />
+    <Content Include="bin\Debug\ru\Microsoft.Data.Edm.resources.dll" />
+    <Content Include="bin\Debug\ru\Microsoft.Data.OData.resources.dll" />
+    <Content Include="bin\Debug\ru\Microsoft.Data.Services.Client.resources.dll" />
+    <Content Include="bin\Debug\ru\System.Spatial.resources.dll" />
+    <Content Include="bin\Debug\System.Spatial.dll" />
+    <Content Include="bin\Debug\System.Spatial.xml" />
+    <Content Include="bin\Debug\WorkerRole1.dll" />
+    <Content Include="bin\Debug\WorkerRole1.pdb" />
+    <Content Include="bin\Debug\zh-Hans\Microsoft.Data.Edm.resources.dll" />
+    <Content Include="bin\Debug\zh-Hans\Microsoft.Data.OData.resources.dll" />
+    <Content Include="bin\Debug\zh-Hans\Microsoft.Data.Services.Client.resources.dll" />
+    <Content Include="bin\Debug\zh-Hans\System.Spatial.resources.dll" />
+    <Content Include="bin\Debug\zh-Hant\Microsoft.Data.Edm.resources.dll" />
+    <Content Include="bin\Debug\zh-Hant\Microsoft.Data.OData.resources.dll" />
+    <Content Include="bin\Debug\zh-Hant\Microsoft.Data.Services.Client.resources.dll" />
+    <Content Include="bin\Debug\zh-Hant\System.Spatial.resources.dll" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <!-- Setting AutoUnifyAssemblyReferences to false will allow the ResolveAssemblyReferences task to 
+    create warnings when detecting version missmatches among references.
+    -->
+    <AutoUnifyAssemblyReferences>false</AutoUnifyAssemblyReferences>
+  </PropertyGroup>
+</Project>
