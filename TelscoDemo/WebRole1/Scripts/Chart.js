@@ -4,12 +4,12 @@ var globalTimestamp = 0;
 var oldTelemetryValue = 0;
 
 function chart_seriesHover(e) {
-    alert(e.value);
+    
     $("activeincidentsovertimelabel").text(e.value);
 }
 
 function formatLongNumber(value) {
-    alert("value");
+   
     if (value == 0) {
         return 0;
     }
