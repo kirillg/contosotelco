@@ -94,6 +94,11 @@ var createChart = function (options) {
             majorUnit: options.majorUnit
         },
         categoryAxis: {
+            //categories: options.categoryaxisdata,
+            //labels: {
+            //    step: 5
+            //},
+            visible: options.categoryAxisVisible,
             minorGridLines: {
                 visible: false
             },
@@ -121,11 +126,20 @@ var chartOptions = {
         series: [{
             //name: "Telemetry Volume",
             data: [],
+            //categoryaxisdata: [],
             color: "#1ebbee"
         }],
         seriesHover: function (e) {
             $("#telemetryvolumelabel").css("cursor", "pointer");
+            if (e.value.length > 1)
+            {
+                 $("#telemetryvolumelabel").text(e.value[(e.value.length)-1]);
+            }
+            else
+                {
+
             $("#telemetryvolumelabel").text(e.value);
+            }
         }
     },
     noofincidents: {
@@ -134,7 +148,7 @@ var chartOptions = {
         docdbProperty: "noofincidents",
         valueAxisTitleText: "doc",
         valueAxisStep: 100,
-        categoryAxisVisible: true,
+        categoryAxisVisible: false,
         type: "line",
         series: [{
             //name: "# of incidents",
@@ -152,7 +166,7 @@ var chartOptions = {
         docdbProperty: "activeincidentsovertime",
         valueAxisTitleText: "doc",
         valueAxisStep: 100,
-        categoryAxisVisible: true,
+        categoryAxisVisible: false,
         type: "line",
         series: [{
             //name: "active incidents overtime",
@@ -170,7 +184,7 @@ var chartOptions = {
         docdbProperty: "maxtimetomitigateincidents",
         valueAxisTitleText: "doc",
         valueAxisStep: 100,
-        categoryAxisVisible: true,
+        categoryAxisVisible: false,
         type: "line",
         series: [{
             //name: "max time to mitigate incidents",
@@ -188,7 +202,7 @@ var chartOptions = {
         docdbProperty: "percentageoftimethesystemviolated",
         valueAxisTitleText: "doc",
         valueAxisStep: 100,
-        categoryAxisVisible: true,
+        categoryAxisVisible: false,
         type: "pie",
         series: [{
             //name: "% of time the system violated",  
@@ -240,9 +254,24 @@ function ShowMetrixGraph() {
         success: function (data) {
             //alert(data.success);
 
+            //var date = new Date();
+            //var hour = date.getHours() - (date.getHours() >= 12 ? 12 : 0);
+            //var period = date.getHours() >= 12 ? 'PM' : 'AM';
+            //var starttime = hour - 1 + ':' + date.getMinutes() + ' ' + period;
+            //var endtime = hour + ':' + date.getMinutes() + ' ' + period;
+            //alert(hour - 1 + ':' + date.getMinutes() + ' ' + period);
 
             //Start - Set graph legned values to null for every 5 seconds
-            $("#telemetryvolumelabel").text(data.items[0].telemetryvolume);
+            var volumeLabel = data.items[0].telemetryvolume;
+
+            if (volumeLabel.length > 1) {
+                $("#telemetryvolumelabel").text(volumeLabel[(volumeLabel.length) - 1]);
+            }
+
+            else {
+
+                $("#telemetryvolumelabel").text(data.items[0].telemetryvolume);
+            }
             $("#noofincidentslabel").text(data.items[0].noofincidents);
             $("#activeincidentsovertimelabel").text(data.items[0].activeincidentsovertime);
             $("#maxtimetomitigateincidentslabel").text(data.items[0].maxtimetomitigateincidents);
@@ -266,36 +295,67 @@ function ShowMetrixGraph() {
             totalStats["percentageoftimethesystemviolated"] = data.items[0].percentageoftimethesystemviolated;
             //alert(totalStats["percentageoftimethesystemviolated"]);
 
-           
+            //alert(data.items[0].telemetryvolume);//21,34,4,4
+
 
             chartTitles.forEach(function (element) {
                 if (element != "percentageoftimethesystemviolated") {
                     if (chartOptions[element].series[0].data.length > 15) {
                         var shifted = chartOptions[element].series[0].data.shift();
                     }
-                    
 
-                    var value = totalStats[chartOptions[element].docdbProperty];
+                    //start - step for multiple values
+                    if (element == "telemetryvolume") {
+                        var value = totalStats[chartOptions[element].docdbProperty];
 
-                    if (element == "telemetryvolume")
-                    {
+                        var valueStringCount = value.length;
+                        var valueString = "";  //4 4 21 15
 
-                        console.log("value - " + totalStats[chartOptions[element].docdbProperty]);
-                        console.log("oldvalue - " + oldTelemetryValue);
-                        if (value == oldTelemetryValue) {
-                            console.log("old value");
-                        }
-                        else
+                        for (var i = 0; i < valueStringCount; i++)
                         {
-                            oldTelemetryValue = value;
-                            chartOptions[element].series[0].data.push(totalStats[chartOptions[element].docdbProperty]);
+                            valueString = valueString + value[i].toString();
                         }
-                       
+
+
+                        console.log(valueString);
+
+                        console.log("old - "+oldTelemetryValue);
+
+
+                        if (oldTelemetryValue == 0) {
+                            for (var k = 0; k < value.length; k++) {
+                                chartOptions[element].series[0].data.push(value[k]);
+                            }
+                            oldTelemetryValue = valueString;
+                        }
+                        else if(oldTelemetryValue != valueString)
+                        {
+                            chartOptions[element].series[0].data.push(value[(value.length) - 1]);
+                            oldTelemetryValue = valueString;
+                        }
                     }
                     else
-                    {
                         chartOptions[element].series[0].data.push(totalStats[chartOptions[element].docdbProperty]);
-                    }
+                    //end
+
+
+                    //var value = totalStats[chartOptions[element].docdbProperty];
+
+                    //if (element == "telemetryvolume") {                       
+                    //    console.log("value - " + totalStats[chartOptions[element].docdbProperty]);
+                    //    console.log("oldvalue - " + oldTelemetryValue);
+                    //    if (value == oldTelemetryValue) {                            
+                    //        console.log("old value");
+                    //    }
+                    //    else {
+                    //        oldTelemetryValue = value;
+                    //        chartOptions[element].series[0].data.push(totalStats[chartOptions[element].docdbProperty]);
+                    //    }
+
+                    //}
+                    //else {
+                    //    chartOptions[element].series[0].data.push(totalStats[chartOptions[element].docdbProperty]);
+                    //}
 
 
                 }
@@ -333,7 +393,7 @@ $(function () {
 $(document).ready(function () {
 
 
-   
+
     var addCircle = function (option, pulse) {
         var $circle = $('<div class="circle"></div>');
         $circle.animate({
