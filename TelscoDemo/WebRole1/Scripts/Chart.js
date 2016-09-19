@@ -318,11 +318,6 @@ function ShowMetrixGraph() {
                         }
 
 
-                        console.log(valueString);
-
-                        console.log("old - "+oldTelemetryValue);
-
-
                         if (oldTelemetryValue == 0) {
                             for (var k = 0; k < value.length; k++) {
                                 chartOptions[element].series[0].data.push(value[k]);
@@ -391,55 +386,5 @@ $(function () {
     fadingScroller($('#container div:first'));
 });
 
-$(document).ready(function () {
 
-
-
-    var addCircle = function (option, pulse) {
-        var $circle = $('<div class="circle"></div>');
-        $circle.animate({
-            'width': '300px',
-            'height': '300px',
-            'margin-top': '-150px',
-            'margin-left': '-150px',
-            'opacity': '0'
-        }, pulse);
-        $(option).append($circle);
-
-        setTimeout(function __remove() {
-            $circle.remove();
-        }, 1000);
-    }
-    addCircle("#mainDot", 6000);
-    setInterval(function () { addCircle("#mainDot", 6000); }, 1200);
-    addCircle("#mainDot01", 5000);
-    setInterval(function () { addCircle("#mainDot01", 5000); }, 1200);
-    addCircle("#mainDot11", 5000);
-    setInterval(function () { addCircle("#mainDot11", 5000); }, 1200);
-    addCircle("#mainDot12", 6000);
-    setInterval(function () { addCircle("#mainDot11", 6000); }, 1200);
-    addCircle("#mainDot12", 6000);
-    setInterval(function () { addCircle("#mainDot12", 6000); }, 1200);
-    addCircle("#mainDot1", 5000);
-    setInterval(function () { addCircle("#mainDot1", 5000); }, 1200);
-    addCircle("#mainDot2", 5000);
-    setInterval(function () { addCircle("#mainDot2", 5000); }, 1200);
-    addCircle("#mainDot21", 7000);
-    setInterval(function () { addCircle("#mainDot21", 7000); }, 1200);
-    addCircle("#mainDot3", 5500);
-    setInterval(function () { addCircle("#mainDot3", 5500); }, 1200);
-    addCircle("#mainDot31", 5500);
-    setInterval(function () { addCircle("#mainDot31", 5500); }, 1200);
-    addCircle("#mainDot4", 5200);
-    setInterval(function () { addCircle("#mainDot4", 5200); }, 1200);
-    addCircle("#mainDot41", 5200);
-    setInterval(function () { addCircle("#mainDot41", 5200); }, 1200);
-    addCircle("#mainDot42", 5200);
-    setInterval(function () { addCircle("#mainDot42", 5200); }, 1200);
-    addCircle("#mainDot43", 5200);
-    setInterval(function () { addCircle("#mainDot43", 5200); }, 1200);
-    addCircle("#mainDot5", 5200);
-    setInterval(function () { addCircle("#mainDot5", 5200); }, 1200);
-
-});
 

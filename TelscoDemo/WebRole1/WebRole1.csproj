@@ -445,7 +445,6 @@
     <Content Include="bin\zh-Hant\System.Spatial.resources.dll" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\bubble.css" />
     <Content Include="Content\kendo\2016.2.607\Black\editor.png" />
     <Content Include="Content\kendo\2016.2.607\Black\imagebrowser.png" />
     <Content Include="Content\kendo\2016.2.607\Black\indeterminate.gif" />
@@ -790,6 +789,7 @@
     <Content Include="Images\case.svg" />
     <Content Include="Images\Costco telecom logo.svg" />
     <Content Include="Images\Glob.svg" />
+    <Content Include="Images\globe.svg" />
     <Content Include="Images\RPS.svg" />
     <Content Include="Images\settings.svg" />
     <Content Include="Images\user.svg" />
@@ -1033,7 +1033,6 @@
     <Content Include="Scripts\kendo\2016.2.607\kendo.webcomponents.min.js" />
     <Content Include="Scripts\kendo\2016.2.607\kendo.window.min.js" />
     <Content Include="Scripts\kendo\2016.2.607\pako_deflate.min.js" />
-    <Content Include="Scripts\bubbles.js" />
     <Content Include="Scripts\Map.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
@@ -1178,7 +1177,6 @@
     <Content Include="Scripts\kendo\2016.2.607\kendo.webcomponents.min.js.map" />
     <Content Include="Scripts\kendo\2016.2.607\kendo.window.min.js.map" />
     <Content Include="Scripts\bubbleData.json" />
-    <Content Include="Views\Home\Bubble.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
