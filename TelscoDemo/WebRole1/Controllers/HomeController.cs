@@ -81,10 +81,15 @@ namespace WebRole1.Controllers
         {
             string token = await GetAuthenticationHeader();
 
-            string subscriptionID = "36dfc234-9a2d-4f33-be43-db6e321dbc2bss";
+            string subscriptionID = "30ca6edd-dc52-46ee-9acb-39c5c7f54463";
 
             TokenCloudCredentials credentials = new TokenCloudCredentials(subscriptionID, token);
-            string resourceUri = "/subscriptions/dd0db424-9a49-408d-911e-67e398aaaa3a/resourceGroups/artrejo-scaledemo2/providers/Microsoft.DocumentDB/databaseAccounts/artrejo-scaledemo2";
+            string resourceUri = "/subscriptions/30ca6edd-dc52-46ee-9acb-39c5c7f54463/resourceGroups/GlobalDB/providers/Microsoft.DocumentDB/databaseAccounts/contosomini";
+
+            //string subscriptionID = "36dfc234-9a2d-4f33-be43-db6e321dbc2bss";
+
+            //TokenCloudCredentials credentials = new TokenCloudCredentials(subscriptionID, token);
+            //string resourceUri = "/subscriptions/dd0db424-9a49-408d-911e-67e398aaaa3a/resourceGroups/artrejo-scaledemo2/providers/Microsoft.DocumentDB/databaseAccounts/artrejo-scaledemo2";
 
             //string filter = null;
             TimeSpan period = new TimeSpan(0, 0, 0, 30, 0);
