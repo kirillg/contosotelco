@@ -1,6 +1,7 @@
 ﻿/// <reference path="_references.js" />
 
 var globalTimestamp = 0;
+var oldTelemetryValue = 0;
 
 function chart_seriesHover(e) {
     alert(e.value);
@@ -265,12 +266,38 @@ function ShowMetrixGraph() {
             totalStats["percentageoftimethesystemviolated"] = data.items[0].percentageoftimethesystemviolated;
             //alert(totalStats["percentageoftimethesystemviolated"]);
 
+           
+
             chartTitles.forEach(function (element) {
                 if (element != "percentageoftimethesystemviolated") {
                     if (chartOptions[element].series[0].data.length > 15) {
                         var shifted = chartOptions[element].series[0].data.shift();
                     }
-                    chartOptions[element].series[0].data.push(totalStats[chartOptions[element].docdbProperty]);
+                    
+
+                    var value = totalStats[chartOptions[element].docdbProperty];
+
+                    if (element == "telemetryvolume")
+                    {
+
+                        console.log("value - " + totalStats[chartOptions[element].docdbProperty]);
+                        console.log("oldvalue - " + oldTelemetryValue);
+                        if (value == oldTelemetryValue) {
+                            console.log("old value");
+                        }
+                        else
+                        {
+                            oldTelemetryValue = value;
+                            chartOptions[element].series[0].data.push(totalStats[chartOptions[element].docdbProperty]);
+                        }
+                       
+                    }
+                    else
+                    {
+                        chartOptions[element].series[0].data.push(totalStats[chartOptions[element].docdbProperty]);
+                    }
+
+
                 }
             });
 

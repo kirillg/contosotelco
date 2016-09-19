@@ -9,13 +9,12 @@
         <div class="col-md-6 header-imgs-cont col-sm-6 col-xs-12">
             <span class="header-imgs"><img src="~/Images/Alert.svg" /></span><span class="header-imgs"><img src="../images/Settings.svg" /></span><span class="header-imgs"><img src="../images/User.svg" /></span>
         </div>
-
+        
     </div>
     <div class="clear row-height">
-
         <div class="col-md-6 col-sm-6 col-xs-12 map-height col-sm-height bg-map">
             @RenderPage("Bubble.cshtml")
-            <img src="../images/Glob.svg" class="globalimg" />            
+            <img src="../images/Glob.svg" class="globalimg" />        
         </div>
         <div class="col-md-6 col-sm-6 col-xs-12 col-sm-height">
             <div class="bg-black clear">
@@ -49,7 +48,7 @@
                     <div class="mrglft15">
                         <div class="graphimg">
                             <div class="grahtitle">Active incidents over time</div>
-                            <div id="activeincidentsovertimegraph" class="graphheight"></div>
+                            <div style="padding-left:10px;" id="activeincidentsovertimegraph" class="graphheight"></div>
                             <div class="graphlegend">
                                 <div class="borderLine">
                                     Active incidents <br />
@@ -64,7 +63,7 @@
 
                         <div class="graphimg">
                             <div class="grahtitle">Telemetry Volume (last hour)</div>
-                            <div id="telemetryvolumegraph" class="graphheight"></div>
+                            <div style="padding-left:10px;" id="telemetryvolumegraph" class="graphheight"></div>
                             <div class="graphlegend">
                                 <div class="borderLine">
                                     Telemetry Volume <br />
@@ -81,7 +80,7 @@
         <div class="col-md-3 col-sm-3 col-xs-6 mrgtp25">
             <div class="graphimg">
                 <div class="grahtitle">Max time to mitigate incidents</div>
-                <div id="maxtimetomitigateincidentsgraph" class="graphheight"></div>
+                <div style="padding-left:10px;" id="maxtimetomitigateincidentsgraph" class="graphheight"></div>
                 <div class="graphlegend">
                     <div class="borderLine">
                         Total Duration <br />
@@ -93,7 +92,7 @@
         <div class="col-md-3 col-sm-3 col-xs-6 mrgtp25">
             <div class="graphimg">
                 <div class="grahtitle"># of incidents (last hour)</div>
-                <div id="noofincidentsgraph" class="graphheight"></div>
+                <div style="padding-left:10px;" id="noofincidentsgraph" class="graphheight"></div>
                 <div class="graphlegend">
                     <div class="borderLine">
                         # incidents <br />
@@ -105,7 +104,7 @@
         <div class="col-md-3 col-sm-3 col-xs-6 mrgtp25">
             <div class="graphimg">
                 <div class="grahtitle">% of time the system violated</div>
-                <div id="percentageoftimethesystemviolatedgraph" class="graphheight"></div>
+                <div style="padding-left:10px;" id="percentageoftimethesystemviolatedgraph" class="graphheight"></div>
                 <div class="graphlegend">
                     <div class="borderLine">
                         System Violation <br />
@@ -133,7 +132,16 @@
                     </div>
                 </div>
             </div>
+        </div>       
+    </div>
+    <div class="footercss">    
+        <div class="footercss1"> 
+            <p class="footercss1">
+                Contoso Telco 2016 (c) &nbsp;&nbsp;
+                Copyright Policy   &nbsp;&nbsp;
+                Privacy Policy    &nbsp;&nbsp;
+                User Agreement  </p> 
         </div>
-
     </div>
 </div>
+

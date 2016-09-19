@@ -3,9 +3,11 @@ using Microsoft.Azure.Insights;
 using Microsoft.Azure.Insights.Models;
 using Microsoft.Azure.Management.ResourceManager;
 using Microsoft.IdentityModel.Clients.ActiveDirectory;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,8 +17,13 @@ using WebRole1.Models;
 
 namespace WebRole1.Controllers
 {
+
+    
     public class HomeController : Controller
     {
+
+        public static DateTime currentTime = DateTime.Now; //declaring this to store the last pulled timestamp for telemetry volume graph
+        
         public ActionResult Index()
         {
             return View();
@@ -47,7 +54,14 @@ namespace WebRole1.Controllers
 
             // int value_telemetryvolume = random.Next(50, 500); //need to get value from db
 
-            MetricListResponse value_telemetryvolume = await GetTelemetryVolume();
+           // TaskAwaiter<double> awaiter =  GetTelemetryVolume().GetAwaiter();
+            double value_telemetryvolume = 0;
+            
+                value_telemetryvolume = GetTelemetryVolume().Result;
+
+            
+
+           
 
             int value_noofincidents = random.Next(20, 40);
             double value_activeusers = random.NextDouble(45.12, 51.21);
@@ -63,12 +77,12 @@ namespace WebRole1.Controllers
             List<GraphModel> listdata = new List<GraphModel>();
             listdata.Add(data);
 
-            return Json(new { items = listdata, success = true }, JsonRequestBehavior.AllowGet);
+            return  Json(new { items = listdata, success = true }, JsonRequestBehavior.AllowGet);
         }
 
 
-        
-        public async Task<MetricListResponse> GetTelemetryVolume()
+
+        public async Task<double> GetTelemetryVolume()
 
         {
             string token = await GetAuthenticationHeader();
@@ -76,7 +90,6 @@ namespace WebRole1.Controllers
             string subscriptionID = "36dfc234-9a2d-4f33-be43-db6e321dbc2bss";
 
             TokenCloudCredentials credentials = new TokenCloudCredentials(subscriptionID, token);
-
             string resourceUri = "/subscriptions/dd0db424-9a49-408d-911e-67e398aaaa3a/resourceGroups/artrejo-scaledemo2/providers/Microsoft.DocumentDB/databaseAccounts/artrejo-scaledemo2";
 
             //string filter = null;
@@ -87,7 +100,18 @@ namespace WebRole1.Controllers
             // LINQ Query
             //            var metricValuesQuery = vmMetricList.MetricCollection.Value.FirstOrDefault().MetricValues.Select(metricValue => metricValue.Total.Value);
             //            var metricValuesQuery = vmMetricList.MetricCollection.Value.FirstOrDefault().MetricValues.Select(metricValue => metricValue.Total.Value);
-            //var metricValuesQuery = vmMetricList.MetricCollection.Value.FirstOrDefault().MetricValues;
+
+            double metricValuesQuery = 0;
+            DateTime latestTime = vmMetricList.MetricCollection.Value.FirstOrDefault().MetricValues.Last().Timestamp;
+
+            //if (currentTime != latestTime)
+            //{
+            //    currentTime = latestTime;
+                metricValuesQuery = vmMetricList.MetricCollection.Value.FirstOrDefault().MetricValues.Last().Total.Value;
+                return metricValuesQuery;
+
+            
+            
             //var metricValuesQuery = vmMetricList;
 
 
@@ -95,10 +119,8 @@ namespace WebRole1.Controllers
             // MetricListResponse list = GetResourceMetrics(credentials, resourceUri, filter, period, duration);
 
             //return metricValuesQuery.ToArray();
-            return vmMetricList;
-
-
-        } 
+            return metricValuesQuery;
+        }
 
         public static async Task<string> GetAuthenticationHeader()
         {
