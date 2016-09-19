@@ -9,6 +9,7 @@ function chart_seriesHover(e) {
 }
 
 function formatLongNumber(value) {
+    alert("value");
     if (value == 0) {
         return 0;
     }
@@ -133,12 +134,12 @@ var chartOptions = {
             $("#telemetryvolumelabel").css("cursor", "pointer");
             if (e.value.length > 1)
             {
-                 $("#telemetryvolumelabel").text(e.value[(e.value.length)-1]);
+                $("#telemetryvolumelabel").text(formatLongNumber(e.value[(e.value.length) - 1]));
             }
             else
                 {
 
-            $("#telemetryvolumelabel").text(e.value);
+            $("#telemetryvolumelabel").text(formatLongNumber(e.value));
             }
         }
     },
@@ -265,12 +266,12 @@ function ShowMetrixGraph() {
             var volumeLabel = data.items[0].telemetryvolume;
 
             if (volumeLabel.length > 1) {
-                $("#telemetryvolumelabel").text(volumeLabel[(volumeLabel.length) - 1]);
+                $("#telemetryvolumelabel").text(formatLongNumber(volumeLabel[(volumeLabel.length) - 1]));
             }
 
             else {
 
-                $("#telemetryvolumelabel").text(data.items[0].telemetryvolume);
+                $("#telemetryvolumelabel").text(formatLongNumber(data.items[0].telemetryvolume));
             }
             $("#noofincidentslabel").text(data.items[0].noofincidents);
             $("#activeincidentsovertimelabel").text(data.items[0].activeincidentsovertime);
