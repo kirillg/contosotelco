@@ -219,8 +219,16 @@ var chartOptions = {
             }]
         }],
         seriesHover: function (e) {
-            $("#percentageoftimethesystemviolatedlabel").css("cursor", "pointer");
-            $("#percentageoftimethesystemviolatedlabel").text(e.value);
+            if (e.value == 5) {
+                $("#percentageoftimethesystemviolatedlabel").css("cursor", "pointer");
+                $("#percentageoftimethesystemviolatedlabelheading").text("System Violation");
+                $("#percentageoftimethesystemviolatedlabel").text(e.value);
+            }
+            else {
+                $("#percentageoftimethesystemviolatedlabel").css("cursor", "pointer");
+                $("#percentageoftimethesystemviolatedlabelheading").text("System Availability");
+                $("#percentageoftimethesystemviolatedlabel").text(e.value);
+            }
         }
     }
 };
