@@ -794,8 +794,8 @@
     <Content Include="Images\settings.svg" />
     <Content Include="Images\user.svg" />
     <Content Include="Images\User_dashboard.svg" />
-    <Content Include="Images\zoom in.svg" />
-    <Content Include="Images\zoom out.svg" />
+    <Content Include="Images\Zoomin.svg" />
+    <Content Include="Images\Zoomout.svg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\kendo\2016.2.607\kendo.black.min.css.map" />

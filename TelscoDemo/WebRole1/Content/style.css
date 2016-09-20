@@ -49,8 +49,10 @@ html body {
 }
 
 .bg-map {
-    background: #393939;
+    background-image:url(../images/globe.svg);
+    background-repeat: repeat-y;
     height: 414px;
+    background-position:center;
 }
 
 .mrgtp25 {
@@ -100,7 +102,7 @@ html body {
 .graphimg {
     width: 100%;
     background: #444444;
-    padding: 10px 15px;
+    /*padding: 10px 15px;*/
 }
 
 .globalimg {
@@ -185,6 +187,17 @@ html body {
     font-size: 16px;
     font-family: 'Segoe UI';
 }
+.zoombtnin{
+    padding-left: 850px;
+    padding-bottom: 5px;
+    padding-top: 350px;  
+}
+.zoombtnout{
+    padding-left: 850px;
+    padding-bottom: 5px; 
+}
+
+
 @media only screen and (min-width:320px) and (max-width:767px) {
     .map-height {
         margin: 15px !important;
