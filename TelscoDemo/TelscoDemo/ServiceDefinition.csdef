@@ -14,10 +14,12 @@
     <Endpoints>
       <InputEndpoint name="Endpoint1" protocol="http" port="80" />
     </Endpoints>
+    <Certificates>
+      <Certificate name="ignitedemo" storeLocation="LocalMachine" storeName="My" />
+    </Certificates>
+    <Imports>
+      <!--Import moduleName="RemoteAccess" /-->
+      <Import moduleName="RemoteForwarder" />
+    </Imports>
   </WebRole>
-  <WorkerRole name="WorkerRole1" vmsize="Small">
-    <ConfigurationSettings>
-      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" />
-    </ConfigurationSettings>
-  </WorkerRole>
 </ServiceDefinition>

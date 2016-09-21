@@ -47,21 +47,6 @@
                 <div class="col-md-6 col-sm-6 col-xs-6 graphimg-bg">
                     <div class="mrglft15">
                         <div class="graphimg">
-                            <div class="grahtitle">Active incidents over time</div>
-                            <div style="padding-left:10px;" id="activeincidentsovertimegraph" class="graphheight"></div>
-                            <div class="graphlegend">
-                                <div class="borderLine">
-                                    Active incidents <br />
-                                    <span class="borderLine2" id="activeincidentsovertimelabel"></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-sm-6 col-xs-6 graphimg-bg">
-                    <div class="mrgrt15">
-
-                        <div class="graphimg">
                             <div class="grahtitle">Telemetry Volume (last hour)</div>
                             <div style="padding-left:10px;" id="telemetryvolumegraph" class="graphheight"></div>
                             <div class="graphlegend">
@@ -71,6 +56,22 @@
                                 </div>
                             </div>
                         </div>
+                        
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6 graphimg-bg">
+                    <div class="mrgrt15">
+                        <div class="graphimg">
+                            <div class="grahtitle">Data Freshness (milliseconds)</div>
+                            <div style="padding-left:10px;" id="latenciesgraph" class="graphheight"></div>
+                            <div class="graphlegend">
+                                <div class="borderLine">
+                                    Data Freshness <br />
+                                    <span class="borderLine2" id="latencieslabel"></span>ms
+                                </div>
+                            </div>
+                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -91,12 +92,12 @@
         </div>
         <div class="col-md-3 col-sm-3 col-xs-6 mrgtp25">
             <div class="graphimg">
-                <div class="grahtitle"># of incidents (last hour)</div>
-                <div style="padding-left:10px;" id="noofincidentsgraph" class="graphheight"></div>
+                <div class="grahtitle">Active incidents over time</div>
+                <div style="padding-left:10px;" id="activeincidentsovertimegraph" class="graphheight"></div>
                 <div class="graphlegend">
                     <div class="borderLine">
-                        # incidents <br />
-                        <span class="borderLine2" id="noofincidentslabel"></span>
+                        Active incidents <br />
+                        <span class="borderLine2" id="activeincidentsovertimelabel"></span>
                     </div>
                 </div>
             </div>
