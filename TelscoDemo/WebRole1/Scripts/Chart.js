@@ -2,6 +2,7 @@
 
 var globalTimestamp = 0;
 var oldTelemetryValue = 0;
+var oldLatencyValue = 0;
 
 function chart_seriesHover(e) {
     
@@ -143,10 +144,10 @@ var chartOptions = {
             }
         }
     },
-    noofincidents: {
-        id: "#noofincidentsgraph",
-        title: "# of incidents",
-        docdbProperty: "noofincidents",
+    latencies: {
+        id: "#latenciesgraph", //latenciesgraph
+        title: "Data Freshness",
+        docdbProperty: "latencies",
         valueAxisTitleText: "doc",
         valueAxisStep: 100,
         categoryAxisVisible: false,
@@ -157,8 +158,15 @@ var chartOptions = {
             color: "#1ebbee"
         }],
         seriesHover: function (e) {
-            $("#noofincidentslabel").css("cursor", "pointer");
-            $("#noofincidentslabel").text(e.value);
+            $("#latencieslabel").css("cursor", "pointer");
+            if (e.value.length > 1) {
+                $("#latencieslabel").text(e.value[(e.value.length) - 1]);
+            }
+            else {
+
+                $("#latencieslabel").text(e.value);
+            }
+            
         }
     },
     activeincidentsovertime: {
@@ -237,9 +245,9 @@ $(document).ready(function () {
     StartGraphProcess();
 });
 
-var chartTitles = ["telemetryvolume", "noofincidents", "activeincidentsovertime", "maxtimetomitigateincidents", "percentageoftimethesystemviolated"]
-var totalStats = { telemetryvolume: 1, noofincidents: 1, activeincidentsovertime: 1, maxtimetomitigateincidents: 1, percentageoftimethesystemviolated: 1 }
-var docdbProperties = ["telemetryvolume", "noofincidents", "activeincidentsovertime", "maxtimetomitigateincidents", "percentageoftimethesystemviolated"]
+var chartTitles = ["telemetryvolume", "latencies", "activeincidentsovertime", "maxtimetomitigateincidents", "percentageoftimethesystemviolated"]
+var totalStats = { telemetryvolume: 1, latencies: 1, activeincidentsovertime: 1, maxtimetomitigateincidents: 1, percentageoftimethesystemviolated: 1 }
+var docdbProperties = ["telemetryvolume", "latencies", "activeincidentsovertime", "maxtimetomitigateincidents", "percentageoftimethesystemviolated"]
 
 function StartGraphProcess() {
     chartTitles.forEach(function (element) {
@@ -272,7 +280,7 @@ function ShowMetrixGraph() {
 
             //Start - Set graph legned values to null for every 5 seconds
             var volumeLabel = data.items[0].telemetryvolume;
-
+            var latencies = data.items[0].latencies;
             if (volumeLabel.length > 1) {
                 $("#telemetryvolumelabel").text(formatLongNumber(volumeLabel[(volumeLabel.length) - 1]));
             }
@@ -281,7 +289,14 @@ function ShowMetrixGraph() {
 
                 $("#telemetryvolumelabel").text(formatLongNumber(data.items[0].telemetryvolume));
             }
-            $("#noofincidentslabel").text(data.items[0].noofincidents);
+            if (latencies.length > 1) {
+                $("#latencieslabel").text(latencies[(latencies.length) - 1]);
+            }
+            else {
+
+                $("#latencieslabel").text(data.items[0].latencies);
+            }
+            
             $("#activeincidentsovertimelabel").text(data.items[0].activeincidentsovertime);
             $("#maxtimetomitigateincidentslabel").text(data.items[0].maxtimetomitigateincidents);
             $("#percentageoftimethesystemviolatedlabel").text(data.items[0].percentageoftimethesystemviolated);
@@ -292,13 +307,13 @@ function ShowMetrixGraph() {
             var spanactiveusers = (data.items[0].activeusers == "" ? 0 : data.items[0].activeusers);
             $("#spanactiveusers").text(spanactiveusers + ' M');
             var spantraficrequest = (data.items[0].traficrequest == "" ? 0 : data.items[0].traficrequest);
-            $("#spantraficrequest").text(spantraficrequest + ' M');
+            $("#spantraficrequest").text(formatLongNumber(spantraficrequest));
 
-            //var noofincidents = (data.items[0].noofincidents == "" ? 0 : data.items[0].noofincidents);
+            //var latencies = (data.items[0].latencies == "" ? 0 : data.items[0].latencies);
             //var maxtimetomitigateincidents = (data.items[0].maxtimetomitigateincidents == "" ? 0 : data.items[0].maxtimetomitigateincidents);
 
             totalStats["telemetryvolume"] = data.items[0].telemetryvolume;
-            totalStats["noofincidents"] = data.items[0].noofincidents;
+            totalStats["latencies"] = data.items[0].latencies;
             totalStats["activeincidentsovertime"] = data.items[0].activeincidentsovertime;
             totalStats["maxtimetomitigateincidents"] = data.items[0].maxtimetomitigateincidents;
             totalStats["percentageoftimethesystemviolated"] = data.items[0].percentageoftimethesystemviolated;
@@ -338,7 +353,36 @@ function ShowMetrixGraph() {
                             oldTelemetryValue = valueString;
                         }
                     }
-                    else
+                    else if ((element == "latencies") && (latencies.length > 1) ) {
+                        var value = totalStats[chartOptions[element].docdbProperty];
+
+                        var valueStringCount = value.length;
+                        var valueString = "";  //4 4 21 15
+
+                        for (var i = 0; i < valueStringCount; i++)
+                        {
+                            valueString = valueString + value[i].toString();
+                        }
+
+
+                        console.log(valueString);
+
+                        console.log("old - "+oldLatencyValue);
+
+
+                        if (oldLatencyValue == 0) {
+                            for (var k = 0; k < value.length; k++) {
+                                chartOptions[element].series[0].data.push(value[k]);
+                            }
+                            oldLatencyValue = valueString;
+                        }
+                        else if(oldTelemetryValue != valueString)
+                        {
+                            chartOptions[element].series[0].data.push(value[(value.length) - 1]);
+                            oldTelemetryValue = valueString;
+                        }
+                    }
+                    else 
                         chartOptions[element].series[0].data.push(totalStats[chartOptions[element].docdbProperty]);
                     //end
 

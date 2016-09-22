@@ -21,10 +21,13 @@ namespace WebRole1.Models
         public string id { get; set; }
 
         [JsonProperty(PropertyName = "telemetryvolume")]
-        public double?[] telemetryvolume { get; set; }
+        public double[] telemetryvolume { get; set; }
 
-        [JsonProperty(PropertyName = "noofincidents")]
-        public long noofincidents { get; set; }
+        [JsonProperty(PropertyName = "latencies")]
+        public double latencies { get; set; }
+
+        //[JsonProperty(PropertyName = "latencies")]
+        //public long latencies { get; set; }
 
         [JsonProperty(PropertyName = "activeincidentsovertime")]
         public long activeincidentsovertime { get; set; }

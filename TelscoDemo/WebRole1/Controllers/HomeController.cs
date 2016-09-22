@@ -3,7 +3,7 @@ using Microsoft.Azure.Insights;
 using Microsoft.Azure.Insights.Models;
 using Microsoft.Azure.Management.ResourceManager;
 using Microsoft.IdentityModel.Clients.ActiveDirectory;
-
+using System.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,15 +15,29 @@ using System.Web;
 using System.Web.Mvc;
 using WebRole1.Models;
 
+using Microsoft.Azure.Documents;
+using Microsoft.Azure.Documents.Client;
+
 namespace WebRole1.Controllers
 {
 
 
     public class HomeController : Controller
     {
-
+        static DocumentClient client = null;
+        static string databaseName;
+        static string collectionName;
+        static string documentId;
         public static DateTime currentTime = DateTime.Now; //declaring this to store the last pulled timestamp for telemetry volume graph
+        static string region;
 
+        public HomeController()
+        {
+            region = ConfigurationManager.AppSettings["Region"];
+            databaseName = ConfigurationManager.AppSettings["DatabaseName"];
+            collectionName = ConfigurationManager.AppSettings["CollectionName"];
+            documentId = ConfigurationManager.AppSettings["DocumentId"];
+        }
         public ActionResult Index()
         {
             return View();
@@ -55,14 +69,18 @@ namespace WebRole1.Controllers
             // int value_telemetryvolume = random.Next(50, 500); //need to get value from db
 
             // TaskAwaiter<double> awaiter =  GetTelemetryVolume().GetAwaiter();
-            double?[] value_telemetryvolume = await GetTelemetryVolume();
+            double[] value_telemetryvolume = await GetTelemetryVolume();
 
-            int value_noofincidents = random.Next(20, 40);
+            double value_latencies =  GetLatencyValue();
+
+            //int value_latencies = random.Next(20, 40);
             double value_activeusers = random.NextDouble(45.12, 51.21);
-            double value_traficrequest = random.NextDouble(1.00, 1.50);
+
+            double value_traficrequest = value_telemetryvolume[value_telemetryvolume.Length - 1];
 
             data.telemetryvolume = value_telemetryvolume;
-            data.noofincidents = value_activeincidentsovertime;
+            data.latencies = value_latencies;
+            //data.latencies = value_activeincidentsovertime;
             data.maxtimetomitigateincidents = value_maxtimetomitigateincidents;
             data.percentageoftimethesystemviolated = 5;
             data.activeincidentsovertime = value_activeincidentsovertime;
@@ -74,9 +92,52 @@ namespace WebRole1.Controllers
             return Json(new { items = listdata, success = true }, JsonRequestBehavior.AllowGet);
         }
 
+        public double GetLatencyValue()
+        {
+            
+            ConnectionPolicy policy = new ConnectionPolicy
+            {
+                ConnectionMode = ConnectionMode.Direct,
+                ConnectionProtocol = Protocol.Tcp
+            };
+            policy.PreferredLocations.Add(region);
+            HomeController.client = new DocumentClient(
+                new Uri(ConfigurationManager.AppSettings["EndPointUrl"]),
+                ConfigurationManager.AppSettings["AuthorizationKey"],
+                policy);
 
+            //warm up            
+            
+            for (int i = 0; i < 10; i++)
+            {
+                client.ReadDocumentAsync(UriFactory.CreateDocumentUri(
+                   databaseName,
+                   collectionName,
+                   documentId)).Wait();
+            }
 
-        public async Task<double?[]> GetTelemetryVolume()
+            int startTicks = Environment.TickCount;
+            for (int i = 0; i < 20; i++)
+            {
+                 client.ReadDocumentAsync(UriFactory.CreateDocumentUri(
+                   databaseName,
+                   collectionName,
+                   documentId)).Wait();
+            }
+            double ticks = (Environment.TickCount - startTicks) / 20;
+            
+            return ticks;
+            /*
+            double[] latencies = new double[15];
+            Random random = new Random();
+            for (int i=0; i<15; i++)
+            {
+                latencies[i]= random.NextDouble(2.4, 8.7);
+            }
+            return latencies;*/
+        }
+
+        public async Task<double[]> GetTelemetryVolume()
 
         {
             string token = await GetAuthenticationHeader();
@@ -98,12 +159,19 @@ namespace WebRole1.Controllers
 
             //start - step automatic values from db
             var test = vmMetricList.MetricCollection.Value.FirstOrDefault().MetricValues;
-            double?[] metricValuesQuery = new double?[test.Count];
+            double[] metricValuesQuery = new double[test.Count];
            
             for (int i = 0; i < test.Count; i++)
             {
-                 metricValuesQuery[i] = test[i].Total;
-               
+                if ((test[i].Total.HasValue == false) || (test[i].Total < 1000000)) 
+                {
+                    metricValuesQuery[i] = 1140350;
+                }
+                else
+                {
+                    metricValuesQuery[i] = test[i].Total.Value;
+                }
+
             }
             return metricValuesQuery;
             //end
@@ -151,7 +219,7 @@ namespace WebRole1.Controllers
             var authContext = new AuthenticationContext(string.Format("https://login.windows.net/{0}", tenant));
 
             X509Certificate2 cert = null;
-            X509Store store = new X509Store(StoreName.My, StoreLocation.CurrentUser);
+            X509Store store = new X509Store(StoreName.My, StoreLocation.LocalMachine);
             string certName = "ignitedemo";
             try
             {

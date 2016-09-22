@@ -12,6 +12,7 @@
     <AssemblyName>TelscoDemo</AssemblyName>
     <StartDevelopmentStorage>True</StartDevelopmentStorage>
     <Name>TelscoDemo</Name>
+    <PackageEnableRemoteDebugger>False</PackageEnableRemoteDebugger>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -45,14 +46,6 @@
       <RoleName>WebRole1</RoleName>
       <UpdateDiagnosticsConnectionStringOnPublish>True</UpdateDiagnosticsConnectionStringOnPublish>
     </ProjectReference>
-    <ProjectReference Include="..\WorkerRole1\WorkerRole1.csproj">
-      <Name>WorkerRole1</Name>
-      <Project>{974f84df-9148-4969-b7c9-01033ae8792b}</Project>
-      <Private>True</Private>
-      <RoleType>Worker</RoleType>
-      <RoleName>WorkerRole1</RoleName>
-      <UpdateDiagnosticsConnectionStringOnPublish>True</UpdateDiagnosticsConnectionStringOnPublish>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Profiles" />
@@ -64,7 +57,9 @@
     <DiagnosticsConfiguration Include="WorkerRole1Content\diagnostics.wadcfgx" />
   </ItemGroup>
   <ItemGroup>
-    <PublishProfile Include="Profiles\AM3PrdDDC07-docdb-test-1Production.azurePubxml" />
+
+    <PublishProfile Include="Profiles\contosotelcoWestUSProduction.azurePubxml" />
+
   </ItemGroup>
   <!-- Import the target files for this project template -->
   <PropertyGroup>
