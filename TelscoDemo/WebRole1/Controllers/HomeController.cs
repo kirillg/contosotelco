@@ -71,7 +71,7 @@ namespace WebRole1.Controllers
             // TaskAwaiter<double> awaiter =  GetTelemetryVolume().GetAwaiter();
             double[] value_telemetryvolume = await GetTelemetryVolume();
 
-            double value_latencies =  GetLatencyValue();
+            double value_latencies = GetLatencyValue();
 
             //int value_latencies = random.Next(20, 40);
             double value_activeusers = random.NextDouble(45.12, 51.21);
@@ -94,7 +94,7 @@ namespace WebRole1.Controllers
 
         public double GetLatencyValue()
         {
-            
+
             ConnectionPolicy policy = new ConnectionPolicy
             {
                 ConnectionMode = ConnectionMode.Direct,
@@ -107,7 +107,7 @@ namespace WebRole1.Controllers
                 policy);
 
             //warm up            
-            
+
             for (int i = 0; i < 10; i++)
             {
                 client.ReadDocumentAsync(UriFactory.CreateDocumentUri(
@@ -119,13 +119,13 @@ namespace WebRole1.Controllers
             int startTicks = Environment.TickCount;
             for (int i = 0; i < 20; i++)
             {
-                 client.ReadDocumentAsync(UriFactory.CreateDocumentUri(
-                   databaseName,
-                   collectionName,
-                   documentId)).Wait();
+                client.ReadDocumentAsync(UriFactory.CreateDocumentUri(
+                  databaseName,
+                  collectionName,
+                  documentId)).Wait();
             }
             double ticks = (Environment.TickCount - startTicks) / 20;
-            
+
             return ticks;
             /*
             double[] latencies = new double[15];
@@ -160,10 +160,10 @@ namespace WebRole1.Controllers
             //start - step automatic values from db
             var test = vmMetricList.MetricCollection.Value.FirstOrDefault().MetricValues;
             double[] metricValuesQuery = new double[test.Count];
-           
+
             for (int i = 0; i < test.Count; i++)
             {
-                if ((test[i].Total.HasValue == false) || (test[i].Total < 1000000)) 
+                if ((test[i].Total.HasValue == false) || (test[i].Total < 1000000))
                 {
                     metricValuesQuery[i] = 1140350;
                 }

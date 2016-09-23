@@ -44,7 +44,7 @@ var createChart = function (options) {
     $(options.id).kendoChart({
         transitions: false,
         chartArea: {
-            background: "#444444"
+            background: "#e6e6e6"
         },
         legend: {
             position: "bottom",
@@ -84,7 +84,7 @@ var createChart = function (options) {
             },
             majorGridLines: {
                 visible: true,
-                color: "#555555"
+                color: "#bbbbbf"
             },
             minorGridLines: {
                 visible: false
@@ -223,7 +223,7 @@ var chartOptions = {
             },
             {
                 value: 95,
-                color: "#555555"
+                color: "#bbbbbb"
             }]
         }],
         seriesHover: function (e) {
@@ -437,6 +437,5 @@ $(function () {
     }
     fadingScroller($('#container div:first'));
 });
-
 
 
