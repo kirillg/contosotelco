@@ -11,7 +11,7 @@
 }
 
 html body {
-    background-color: #393939;
+    background-color: white !important;
 }
 
 .header {
@@ -44,7 +44,7 @@ html body {
 }
 
 .bg-black {
-    background-color: #444444;
+    background-color: #e6e6e6;
     color: #fff;
 }
 
@@ -61,7 +61,7 @@ html body {
 }
 
 .telco-logo {
-    background: #393939;
+    background:white;
     width: 46px;
     margin-right: 12px;
     vertical-align: top;
@@ -77,13 +77,14 @@ html body {
     display: block;
     padding-left: 25px;
     padding-top: 1px;
-    font-weight: bold;
+    font-weight: 500;
+    font-size:24px;
 }
 
     .userimgs img {
         position: absolute;
-        height: 16px;
-        width: 16px;
+        height: 30px;
+        width: 20px;
         left: 0;
         top: 3px;
     }
@@ -101,7 +102,7 @@ html body {
 
 .graphimg {
     width: 100%;
-    background: #444444;
+    background: #e6e6e6;
     /*padding: 10px 15px;*/
 }
 
@@ -127,7 +128,7 @@ html body {
 .header-imgs img {
     width: 16px;
     height: 16px;
-    background: #393939;
+    background: white;
 }
 
 .graphheight {
@@ -139,15 +140,18 @@ html body {
     color: whitesmoke;
     font-size: 16px;
     font-family: 'Segoe UI';
+    font-weight:400;
+    color:#393939;
     padding: 10px;
     display: block;
 }
 
 .graphlegend {
     color: whitesmoke;
-    background-color: #444444;
+    background-color: #e6e6e6;
     font-size: 14px;
     font-family: 'Segoe UI';
+    color:#393939;color:#393939;
     padding: 10px;
 }
 
@@ -158,32 +162,38 @@ html body {
 }
 
 .borderLine2 {
-    color: white;
+    color: #393939;
     font-size: 24px;
+    font-weight: 500;
+    font-size:24px;
 }
 
 .borderLineAlert {
-    border-left: 5px solid #444444;
+    border-left: 5px solid #e6e6e6;
     height: 50px;
     padding-left: 10px;
 }
 
 .alertnews {
     color: whitesmoke;
-    background-color: #444444;
+    background-color: #e6e6e6;
     font-size: 14px;
     font-family: 'Segoe UI';
+    color:#393939;
     padding: 10px;
 }
 
+.spanfontcolor{
+    color:#393939 !important;
+}
 .footercss{
-    background-color: #393939;
+    background-color: white;
     padding-bottom:0px;
 }
 .footercss1{
     padding-top: 55px;
     padding-left:450px;
-    color: whitesmoke;
+    color: #393939;
     font-size: 16px;
     font-family: 'Segoe UI';
 }
@@ -209,4 +219,10 @@ html body {
     .header-imgs-cont {
         text-align: left;
     }
+}
+
+/*SVG*/
+
+.svg path{
+    /*fill: blue;*/
 }

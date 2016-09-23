@@ -57,7 +57,9 @@
     <DiagnosticsConfiguration Include="WorkerRole1Content\diagnostics.wadcfgx" />
   </ItemGroup>
   <ItemGroup>
+
     <PublishProfile Include="Profiles\contosotelcoWestUSProduction.azurePubxml" />
+
   </ItemGroup>
   <!-- Import the target files for this project template -->
   <PropertyGroup>
